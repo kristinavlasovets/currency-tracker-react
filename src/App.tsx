@@ -1,12 +1,14 @@
 import React from 'react'
-import './styles.css'
 import image from './currency.svg'
-import MoneyCounter from './MoneyCounter'
+import MoneyCounter from './components/MoneyCounter'
+import { GlobalStyles } from './styles/globalStyles'
+import Banner from './components/Banner'
 
 const App = () => {
   return (
     <>
-      <h1>Hello World from Scratch!</h1>
+      <GlobalStyles />
+      <Banner />
       <img src={image} alt="logo" width="300" height="300" />
       <MoneyCounter />
     </>
