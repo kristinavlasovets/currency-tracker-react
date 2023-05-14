@@ -1,7 +1,8 @@
-const path = require('path')
-const HtmlWebpackPlugin = require('html-webpack-plugin')
-const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin')
-const Dotenv = require('dotenv-webpack')
+const path = require('path');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
+const Dotenv = require('dotenv-webpack');
 
 module.exports = {
   entry: path.resolve(__dirname, '..', './src/index.tsx'),
@@ -21,10 +22,13 @@ module.exports = {
       '@components': path.resolve(__dirname, '../src/components'),
       '@constants': path.resolve(__dirname, '../src/constants'),
       '@helpers': path.resolve(__dirname, '../src/helpers'),
-      '@models': path.resolve(__dirname, '../src/models'),
       '@pages': path.resolve(__dirname, '../src/pages'),
       '@shared': path.resolve(__dirname, '../src/shared'),
+      '@services': path.resolve(__dirname, '../src/services'),
       '@styles': path.resolve(__dirname, '../src/styles'),
+      '@theme': path.resolve(__dirname, '../src/theme'),
+      '@types': path.resolve(__dirname, '../src/types'),
+      '@utils': path.resolve(__dirname, '../src/utils'),
     },
   },
   module: {
@@ -57,6 +61,7 @@ module.exports = {
     filename: 'bundle.js',
   },
   plugins: [
+    new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
       template: path.resolve(__dirname, '..', './public/index.html'),
     }),
@@ -65,4 +70,4 @@ module.exports = {
     }),
   ],
   devServer: { historyApiFallback: true },
-}
+};

@@ -1,16 +1,93 @@
-import { Colors } from '@constants/styles/colors'
+import { Colors } from '@constants/styles/colors';
 
-import { IDarkTheme, ILightTheme } from './types'
+import { ICommonTheme, ITheme } from './types';
 
-export const darkTheme: IDarkTheme = {
+const commonTheme: ICommonTheme = {
+  fontWeights: {
+    //   EXTRA_LIGHT = 200,
+    //   LIGHT = 300,
+    //   REGULAR = 400,
+    //   MEDIUM = 500,
+    //   SEMI_BOLD = 600,
+    //   BOLD = 700,
+    xxs: 200,
+    xs: 300,
+    s: 400,
+    m: 500,
+    l: 600,
+    xl: 700,
+  },
+  fontSizes: {
+    //   EXTRA_TINY = '10',
+    //   TINY = '16',
+    //   SMALL = '26',
+    //   NORMAL = '30',
+    //   EXTRA_LARGE = '65',
+    //   SUPER_LARGE = '75',
+    xxs: 10,
+    xs: 16,
+    s: 26,
+    m: 30,
+    xl: 65,
+    xxl: 75,
+  },
+  colors: {
+    DARK_BG: Colors.DARK_BG,
+    LIGHT_BG: Colors.LIGHT_BG,
+    MODAL_BG: Colors.MODAL_BG,
+    TEXT_GRADIENT_GREEN: Colors.TEXT_GRADIENT_GREEN,
+    IMAGE_GRADIENT_GREEN: Colors.IMAGE_GRADIENT_GREEN,
+    BOX_GRADIENT_BLACK: Colors.BOX_GRADIENT_BLACK,
+    GREEN: Colors.GREEN,
+    WHITE: Colors.WHITE,
+    LIGHT_GRAY: Colors.LIGHT_GRAY,
+    GRAY: Colors.GRAY,
+    MEDIUM_GRAY: Colors.MEDIUM_GRAY,
+    DARK_GRAY: Colors.DARK_GRAY,
+    FOOTER_GRAY: Colors.FOOTER_GRAY,
+    SEARCH_LIGHT_GRAY: Colors.SEARCH_LIGHT_GRAY,
+    SEARCH_DARK_GRAY: Colors.SEARCH_DARK_GRAY,
+    RED: Colors.RED,
+  },
+  dimensions: {
+    mobile: 495,
+  },
+  borderRadiuses: {
+    xs: 4,
+    s: 8,
+    m: 10,
+    l: 20,
+    xl: 50,
+  },
+  margins: {
+    zero: 0,
+    five: 5,
+    ten: 10,
+    twenty: 20,
+    thirty: 30,
+    thirtyFive: 35,
+    fourty: 40,
+    fourtyFive: 45,
+    fifty: 50,
+    eighty: 80,
+    hundred: 100,
+    hundredTwenty: 120,
+    twoHundreds: 200,
+    twoHundredsTen: 210,
+  },
+};
+
+export const darkTheme: ITheme = {
   bodyColor: Colors.DARK_BG,
   fontColor: Colors.LIGHT_BG,
   subtitleColor: Colors.LIGHT_GRAY,
   currencyCardColor: Colors.DARK_GRAY,
-}
-export const lightTheme: ILightTheme = {
+  ...commonTheme,
+};
+export const lightTheme: ITheme = {
   bodyColor: Colors.LIGHT_BG,
   fontColor: Colors.DARK_BG,
   subtitleColor: Colors.DARK_GRAY,
   currencyCardColor: Colors.MEDIUM_GRAY,
-}
+  ...commonTheme,
+};

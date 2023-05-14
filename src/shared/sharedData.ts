@@ -43,11 +43,11 @@ export const allCurrenciesArray = [
     code: 'USD',
     value: 1,
   },
-]
+];
 
 export const updateTime = {
   last_updated_at: '2023-04-28T23:59:59Z',
-}
+};
 
 export const bynData = [
   { id: 1, date: 1, rate: 2.49 },
@@ -81,7 +81,7 @@ export const bynData = [
   { id: 29, date: 29, rate: 2.49 },
   { id: 30, date: 30, rate: 2.49 },
   { id: 31, date: 31, rate: 2.49 },
-]
+];
 export const euroData = [
   { id: 1, date: 1, rate: 0.92 },
   { id: 2, date: 2, rate: 0.92 },
@@ -114,9 +114,6 @@ export const euroData = [
   { id: 29, date: 29, rate: 0.91 },
   { id: 30, date: 30, rate: 0.92 },
   { id: 31, date: 31, rate: 0.93 },
-]
+];
 
-export const options = [
-  { label: 'EUR', currency: euroData },
-  { label: 'BYN', currency: bynData },
-]
+export const options = [{ label: 'BTC' }, { label: 'ETH' }];

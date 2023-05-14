@@ -1,10 +1,11 @@
-import { createGlobalStyle, DefaultTheme } from 'styled-components'
+import { createGlobalStyle, DefaultTheme } from 'styled-components';
 
 export const GlobalStyles = createGlobalStyle<{ theme: DefaultTheme }>`
 * {
     background-color: ${(props) => props.theme.bodyColor};
     color: ${(props) => props.theme.fontColor};
-    margin: 0px;
+    font-family: 'Poppins', 'Inter', sans-serif;
+    margin: ${({ theme }) => theme.margins.zero};
     padding: 0px;
     box-sizing: border-box;
     text-decoration: none;
@@ -13,4 +14,4 @@ export const GlobalStyles = createGlobalStyle<{ theme: DefaultTheme }>`
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
-`
+`;

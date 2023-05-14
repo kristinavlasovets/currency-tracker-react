@@ -1,7 +1,7 @@
-import React, { FC } from 'react'
+import React, { FC } from 'react';
 
-import { Divider, Text, Wrapper } from './styles'
-import { SectionHeadingProps } from './types'
+import { Divider, Text, Wrapper } from './styles';
+import { SectionHeadingProps } from './types';
 
 const SectionHeading: FC<SectionHeadingProps> = ({ text }) => {
   return (
@@ -9,7 +9,7 @@ const SectionHeading: FC<SectionHeadingProps> = ({ text }) => {
       <Text>{text}</Text>
       <Divider />
     </Wrapper>
-  )
-}
+  );
+};
 
-export default SectionHeading
+export default SectionHeading;

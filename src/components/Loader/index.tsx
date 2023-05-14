@@ -1,11 +1,12 @@
-import { loaderText } from '@constants/texts/components/loader'
-import React, { FC } from 'react'
+import React, { FC } from 'react';
 
-import { Message } from './styles'
+import { loaderText } from '@constants/config/components/loader';
+
+import { Message } from './styles';
 
 const Loader: FC = () => {
-  const { message } = loaderText
-  return <Message>{message}</Message>
-}
+  const { message } = loaderText;
+  return <Message>{message}</Message>;
+};
 
-export default Loader
+export default Loader;

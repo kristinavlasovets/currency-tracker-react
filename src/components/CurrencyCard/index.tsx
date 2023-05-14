@@ -1,9 +1,11 @@
-import { currencyIcons } from '@constants/styles/icons'
-import { currencyCardText } from '@constants/texts/components/currencyCard'
-import chooseCurrencyIconHandler from '@helpers'
-import React, { FC } from 'react'
+import React, { FC } from 'react';
 
-import { handleRateValue } from './config'
+import { currencyCardText } from '@constants/config/components/currencyCard';
+import { currencyIcons } from '@constants/styles/icons';
+
+import chooseCurrencyIconHandler from '../../helpers';
+import { handleRateValue } from '../../utils';
+
 import {
   CardCurrencyWrapper,
   CardIcon,
@@ -11,17 +13,17 @@ import {
   CardName,
   CardStatus,
   CardWrapper,
-} from './styles'
-import { CurrencyCardProps } from './types'
+} from './styles';
+import { CurrencyCardProps } from './types';
 
 const CurrencyCard: FC<CurrencyCardProps> = ({
   handleCurrency,
   code,
   value,
 }) => {
-  const cardIcon = chooseCurrencyIconHandler(code, currencyIcons)
+  const cardIcon = chooseCurrencyIconHandler(code, currencyIcons);
 
-  const { imgAlt, baseCurrency } = currencyCardText
+  const { imgAlt, baseCurrency } = currencyCardText;
 
   return (
     <CardWrapper onClick={handleCurrency}>
@@ -36,7 +38,7 @@ const CurrencyCard: FC<CurrencyCardProps> = ({
         </CardStatus>
       </CardCurrencyWrapper>
     </CardWrapper>
-  )
-}
+  );
+};
 
-export default CurrencyCard
+export default CurrencyCard;

@@ -1,44 +1,70 @@
-import MySearchIconSvg from '@assets/svg/icons/bankcardPage/search.svg'
-import MapComponent from '@components/MapComponent'
-import { bankcardText } from '@constants/texts/pages/bankcard'
-import { ICurrencyItem } from '@models/ICurrencyItem'
-import { allCurrenciesArray } from '@shared/sharedData'
-import React, { ChangeEvent, FC, useState } from 'react'
+import React, { ChangeEvent, FC, useState } from 'react';
+
+import MySearchIconSvg from '@assets/svg/icons/bankcardPage/search.svg';
+import { bankcardText } from '@constants/config/pages/bankcard';
+import { Currencies } from '@constants/currencies';
+import { allCurrenciesArray } from '@shared/sharedData';
+import { ICurrencyItem } from '@types';
+
+import { useMap } from '../../hooks/useMap';
 
 import {
   DataItem,
   DataResult,
   Input,
+  Map,
+  MapWrapper,
   Search,
   SearchIcon,
   SearchIconWrapper,
   SearchInputs,
   Text,
   Wrapper,
-} from './styles'
+} from './styles';
+
+import 'maplibre-gl/dist/maplibre-gl.css';
 
 const BankcardPage: FC = () => {
-  const [filteredData, setFilteredData] = useState<ICurrencyItem[]>([])
-  const [searchCode, setSearchCode] = useState<string>('')
+  const [searchValue, setSearchValue] = useState<string>('');
+  const [filteredData, setFilteredData] = useState<ICurrencyItem[]>([]);
+  const [searchCode, setSearchCode] = useState<string>('');
+  const [isDropdownVisible, setIsDropdownVisible] = useState<boolean>(false);
+  const [isMessageVisible, setIsMessageVisible] = useState<boolean>(false);
+
+  const mapContainerRef = useMap(searchCode);
 
   const handleFilter = (e: ChangeEvent<HTMLInputElement>) => {
-    const searchParameter = e.target.value
-    const newFilter = allCurrenciesArray.filter(({ code }) => {
-      return code.toLowerCase().includes(searchParameter.toLowerCase())
-    })
+    setSearchValue(e.target.value);
+    const searchParameter = e.target.value;
+    const newFilter = allCurrenciesArray.filter(({ code }) =>
+      code.toLowerCase().includes(searchParameter.toLowerCase())
+    );
 
     if (searchParameter === '') {
-      setFilteredData([])
+      setFilteredData([]);
     } else {
-      setFilteredData(newFilter)
+      setFilteredData(newFilter);
+      setIsDropdownVisible(true);
     }
-  }
+  };
 
-  const handleShow = (code: string) => () => {
-    setSearchCode(code)
-  }
+  const handleChoose = (code: string) => () => {
+    setSearchCode(code);
+    setIsDropdownVisible(false);
+    setSearchValue(code);
 
-  const { text, inputPlaceholder, imgAlt } = bankcardText
+    if (
+      code === Currencies.BTC ||
+      code === Currencies.ETH ||
+      code === Currencies.LTC
+    ) {
+      setIsMessageVisible(true);
+    } else {
+      setIsMessageVisible(false);
+    }
+  };
+
+  const { text, inputPlaceholder, imgAlt, message } = bankcardText;
 
   return (
     <>
@@ -46,25 +72,30 @@ const BankcardPage: FC = () => {
         <Text>{text}</Text>
         <Search>
           <SearchInputs>
-            <Input placeholder={inputPlaceholder} onChange={handleFilter} />
+            <Input
+              value={searchValue}
+              placeholder={inputPlaceholder}
+              onChange={handleFilter}
+            />
             <SearchIconWrapper>
               <SearchIcon src={MySearchIconSvg} alt={imgAlt} />
             </SearchIconWrapper>
           </SearchInputs>
-          {filteredData?.length != 0 && (
-            <DataResult>
-              {filteredData.map(({ code }) => (
-                <DataItem key={code} onClick={handleShow(code)}>
-                  {code}
-                </DataItem>
-              ))}
-            </DataResult>
-          )}
+          <DataResult isDropdownVisible={isDropdownVisible}>
+            {filteredData.map(({ code }) => (
+              <DataItem key={code} onClick={handleChoose(code)}>
+                {code}
+              </DataItem>
+            ))}
+          </DataResult>
         </Search>
+        {isMessageVisible && <Text>{message}</Text>}
       </Wrapper>
-      <MapComponent searchCode={searchCode} />
+      <MapWrapper>
+        <Map ref={mapContainerRef} />
+      </MapWrapper>
     </>
-  )
-}
+  );
+};
 
-export default BankcardPage
+export default BankcardPage;

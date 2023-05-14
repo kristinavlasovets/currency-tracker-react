@@ -18,5 +18,5 @@
     "resolveJsonModule": true
   },
   "include": ["./src/**/*"],
-  "exclude": ["node_modules", ".vscode"]
+  "exclude": ["node_modules", ".vscode", "__mocks__"]
 }

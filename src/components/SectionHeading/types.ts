@@ -1,3 +1,3 @@
 export interface SectionHeadingProps {
-  text: string
+  text: string;
 }

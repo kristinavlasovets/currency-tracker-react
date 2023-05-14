@@ -38,4 +38,25 @@ module.exports = {
     'import/newline-after-import': 'error',
     'import/no-duplicates': 'error',
   },
-}
+  overrides: [
+    {
+      files: ['**/*.js', '**/*.ts', '**/*.tsx'],
+      rules: {
+        'simple-import-sort/imports': [
+          'error',
+          {
+            groups: [
+              ['^react$', '^next', '^[a-z]'],
+              ['^@'],
+              ['^~'],
+              ['^\\.\\.(?!/?$)', '^\\.\\./?$'],
+              ['^\\./(?=.*/)(?!/?$)', '^\\.(?!/?$)', '^\\./?$'],
+              ['^.+\\.s?css$'],
+              ['^\\u0000'],
+            ],
+          },
+        ],
+      },
+    },
+  ],
+};

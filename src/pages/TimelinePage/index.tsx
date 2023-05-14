@@ -1,13 +1,27 @@
-import BarLineChart from '@components/BarLineChart'
-import { Colors } from '@constants/styles/colors'
-import { currencyIcons } from '@constants/styles/icons'
-import { timelineText } from '@constants/texts/pages/timeline'
-import chooseCurrencyIconHandler from '@helpers'
-import { IOption } from '@models/IOption'
-import { options } from '@shared/sharedData'
-import React, { FC, useEffect, useState } from 'react'
+import React, { FC, useEffect, useState } from 'react';
+import {
+  BarElement,
+  CategoryScale,
+  Chart as ChartJS,
+  Legend,
+  LinearScale,
+  PointElement,
+  registerables,
+  Title,
+  Tooltip,
+} from 'chart.js';
+import { Bar, Line } from 'react-chartjs-2';
+
+import { timelineText } from '@constants/config/pages/timeline';
+import { Colors } from '@constants/styles/colors';
+import { currencyIcons } from '@constants/styles/icons';
+import chooseCurrencyIconHandler from '@helpers';
+import { getTimelineData } from '@services';
+import { options } from '@shared/sharedData';
+import { IChartCurrency, IOption } from '@types';
 
 import {
+  ChartWrapper,
   CurrencyIcon,
   CurrencyIconWrapper,
   CurrencyName,
@@ -16,54 +30,72 @@ import {
   SelectItem,
   SelectMenu,
   SelectWrapper,
-} from './styles'
-import { SelectOption } from './types'
+} from './styles';
+import { SelectOption } from './types';
+
+ChartJS.register(
+  CategoryScale,
+  LinearScale,
+  BarElement,
+  Title,
+  Tooltip,
+  Legend,
+  PointElement,
+  ...registerables
+);
 
 const TimelinePage: FC = () => {
-  const [value, setValue] = useState<IOption>(options[0])
-  const [icon, setIcon] = useState<string>(currencyIcons.EUR)
+  const [value, setValue] = useState<IOption>(options[0]);
+  const [icon, setIcon] = useState<string>(currencyIcons.BTC);
+  const [chartData, setChartData] = useState<IChartCurrency[]>([]);
 
-  const currencyIcon = chooseCurrencyIconHandler(value.label, currencyIcons)
+  const currencyIcon = chooseCurrencyIconHandler(value.label, currencyIcons);
+
+  const { imgAlt, labelText } = timelineText;
 
   const selectOption = (option: SelectOption) => {
-    setValue(option)
-  }
+    setValue(option);
+  };
 
   const handleOption = (option: IOption) => () => {
-    selectOption(option)
-  }
+    selectOption(option);
+  };
+
+  useEffect(() => {
+    getTimelineData(value.label).then((data) => {
+      setChartData(data.data);
+    });
+  }, [value.label]);
 
   const [currencyData, setCurrencyData] = useState({
-    labels: value.currency.map((data) => data.date),
+    labels: chartData.map((item) => item.time_close.slice(5, 10)),
     datasets: [
       {
-        label: value.label,
-        data: value.currency.map((data) => data.rate),
+        label: labelText,
+        data: chartData.map((item) => item.price_close),
         backgroundColor: Colors.RED,
         borderColor: Colors.RED,
         borderWidth: 2,
       },
     ],
-  })
+  });
 
   useEffect(() => {
     setCurrencyData({
-      labels: value.currency.map((data) => data.date),
+      labels: chartData.map((item) => item.time_close.slice(5, 10)),
       datasets: [
         {
-          label: value.label,
-          data: value.currency.map((data) => data.rate),
+          label: labelText,
+          data: chartData.map((item) => item.price_close),
           backgroundColor: Colors.RED,
           borderColor: Colors.RED,
           borderWidth: 2,
         },
       ],
-    })
+    });
 
-    setIcon(currencyIcon)
-  }, [currencyIcon, value])
-
-  const { imgAlt } = timelineText
+    setIcon(currencyIcon);
+  }, [currencyIcon, chartData, labelText]);
 
   return (
     <>
@@ -87,9 +119,12 @@ const TimelinePage: FC = () => {
         </CurrencyIconWrapper>
         <CurrencyName>{value.label}</CurrencyName>
       </CurrencyNameWrapper>
-      <BarLineChart chartData={currencyData} />
+      <ChartWrapper>
+        <Line data={currencyData} />
+        <Bar data={currencyData} />
+      </ChartWrapper>
     </>
-  )
-}
+  );
+};
 
-export default TimelinePage
+export default TimelinePage;

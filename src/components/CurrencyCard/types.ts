@@ -1,6 +1,6 @@
 export interface CurrencyCardProps {
-  code: string
-  value: number
+  code: string;
+  value: number;
 
-  handleCurrency: () => void
+  handleCurrency: () => void;
 }

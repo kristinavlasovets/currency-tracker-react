@@ -1,5 +1,6 @@
-import { footerText } from '@constants/texts/components/footer'
-import React, { FC } from 'react'
+import React, { FC } from 'react';
+
+import { footerText } from '@constants/config/components/footer';
 
 import {
   ChapterText,
@@ -13,16 +14,11 @@ import {
   SubchapterTitle,
   SubchapterWrapper,
   Wrapper,
-} from './styles'
+} from './styles';
 
 const Footer: FC = () => {
-  const {
-    chapterTitle,
-    chapterText,
-    subchapterTitle,
-    subchapterText,
-    copyrightNotice,
-  } = footerText
+  const { chapterTitle, chapterText, subchapterText, copyrightNotice } =
+    footerText;
 
   return (
     <Wrapper>
@@ -33,27 +29,19 @@ const Footer: FC = () => {
           </ChapterTitleWrapper>
           <ChapterText>{chapterText}</ChapterText>
         </ChapterWrapper>
-        <SubchapterWrapper>
-          <SubchapterTitle>{subchapterTitle[0]}</SubchapterTitle>
-          <SubchapterText>{subchapterText[0]}</SubchapterText>
-          <SubchapterText>{subchapterText[1]}</SubchapterText>
-        </SubchapterWrapper>
-        <SubchapterWrapper>
-          <SubchapterTitle>{subchapterTitle[1]}</SubchapterTitle>
-          <SubchapterText>{subchapterText[2]}</SubchapterText>
-          <SubchapterText>{subchapterText[3]}</SubchapterText>
-        </SubchapterWrapper>
-        <SubchapterWrapper>
-          <SubchapterTitle>{subchapterTitle[2]}</SubchapterTitle>
-          <SubchapterText>{subchapterText[4]}</SubchapterText>
-          <SubchapterText>{subchapterText[5]}</SubchapterText>
-        </SubchapterWrapper>
+        {subchapterText.map(({ title, text, path }) => (
+          <SubchapterWrapper key={title}>
+            <SubchapterTitle to={path}>{title}</SubchapterTitle>
+            <SubchapterText to={path}>{text[0]}</SubchapterText>
+            <SubchapterText to={path}>{text[1]}</SubchapterText>
+          </SubchapterWrapper>
+        ))}
       </ContentWrapper>
       <CopyrightNoticeWrapper>
         <CopyrightNotice>{copyrightNotice}</CopyrightNotice>
       </CopyrightNoticeWrapper>
     </Wrapper>
-  )
-}
+  );
+};
 
-export default Footer
+export default Footer;

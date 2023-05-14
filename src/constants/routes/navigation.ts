@@ -1,8 +1,10 @@
-import { AppRoutes } from '@components/AppRouter/types'
+import { AppRoutes } from '@components/AppRouter/types';
+
+const { HOME, TIMELINE, BANKCARD, CONTACT } = AppRoutes;
 
 export const NAVIGATION = [
-  { text: 'Home', path: AppRoutes.HOME },
-  { text: 'Timeline', path: AppRoutes.TIMELINE },
-  { text: 'Bankcard', path: AppRoutes.BANKCARD },
-  { text: 'Contact', path: AppRoutes.CONTACT },
-]
+  { text: 'Home', path: HOME },
+  { text: 'Timeline', path: TIMELINE },
+  { text: 'Bankcard', path: BANKCARD },
+  { text: 'Contact', path: CONTACT },
+];

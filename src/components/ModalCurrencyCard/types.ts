@@ -1,9 +1,13 @@
-import { ICurrencyItem } from '@models/ICurrencyItem'
+import { ICurrencyItem } from '@types';
 
 export interface ModalCurrencyCardProps {
-  isVisible: boolean
-  chosenCurrency: ICurrencyItem
-  allCurrenciesArray: ICurrencyItem[]
+  isVisible: boolean;
+  chosenCurrency: ICurrencyItem;
+  allCurrenciesArray: ICurrencyItem[];
 
-  handleClose: () => void
+  handleClose: () => void;
+}
+
+export interface SelectMenuProps {
+  isDropdownVisible: boolean;
 }

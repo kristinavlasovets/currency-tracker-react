@@ -1,6 +1,7 @@
-import MyLogoSvg from '@assets/svg/logo/logo.svg'
-import { bannerText } from '@constants/texts/components/banner'
-import React, { FC } from 'react'
+import React, { FC } from 'react';
+
+import MyLogoSvg from '@assets/svg/logo/logo.svg';
+import { bannerText } from '@constants/config/components/banner';
 
 import {
   Logo,
@@ -11,10 +12,10 @@ import {
   TitleTwo,
   TitleWrapper,
   Wrapper,
-} from './styles'
+} from './styles';
 
 const Banner: FC = () => {
-  const { titleOne, titleTwo, subtitle, imgAlt } = bannerText
+  const { titleOne, titleTwo, subtitle, imgAlt } = bannerText;
 
   return (
     <Wrapper>
@@ -29,7 +30,7 @@ const Banner: FC = () => {
         <Logo src={MyLogoSvg} alt={imgAlt} />
       </LogoWrapper>
     </Wrapper>
-  )
-}
+  );
+};
 
-export default Banner
+export default Banner;

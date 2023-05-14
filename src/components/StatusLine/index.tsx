@@ -1,12 +1,13 @@
-import MyLargeIconSvg from '@assets/svg/icons/statusLine/largeIcon.svg'
-import MyMediumIconSvg from '@assets/svg/icons/statusLine/mediumIcon.svg'
-import MySmallIconSvg from '@assets/svg/icons/statusLine/smallIcon.svg'
-import { statusLineText } from '@constants/texts/components/statusLine'
-import { ICurrency } from '@models/ICurrency'
-// import { updateTime } from '@shared/sharedData'
-import React, { FC, useEffect, useState } from 'react'
+import React, { FC, useEffect, useState } from 'react';
 
-import { getCurrencyData } from '../../services'
+import MyLargeIconSvg from '@assets/svg/icons/statusLine/largeIcon.svg';
+import MyMediumIconSvg from '@assets/svg/icons/statusLine/mediumIcon.svg';
+import MySmallIconSvg from '@assets/svg/icons/statusLine/smallIcon.svg';
+import { statusLineText } from '@constants/config/components/statusLine';
+import { ICurrency } from '@types';
+
+import { getCurrencyData } from '../../services';
+
 import {
   IconWrapper,
   LargeIcon,
@@ -14,18 +15,18 @@ import {
   SmallIcon,
   Text,
   Wrapper,
-} from './styles'
+} from './styles';
 
 const StatusLine: FC = () => {
-  const [updateTime, setUpdateTime] = useState<ICurrency>({} as ICurrency)
+  const [updateTime, setUpdateTime] = useState<ICurrency>({} as ICurrency);
 
   useEffect(() => {
     getCurrencyData().then(({ data }) => {
-      setUpdateTime(data)
-    })
-  }, [])
+      setUpdateTime(data);
+    });
+  }, []);
 
-  const { text, hours, imgAlt } = statusLineText
+  const { text, hours, imgAlt } = statusLineText;
   return (
     <Wrapper>
       <IconWrapper>
@@ -39,7 +40,7 @@ const StatusLine: FC = () => {
         {hours}
       </Text>
     </Wrapper>
-  )
-}
+  );
+};
 
-export default StatusLine
+export default StatusLine;

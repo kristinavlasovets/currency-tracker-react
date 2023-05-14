@@ -1,35 +1,31 @@
-import { Colors } from '@constants/styles/colors'
-import { Dimensions } from '@constants/styles/dimensions'
-import { FontFamily, FontSize, FontWeight } from '@constants/styles/fonts'
-import styled from 'styled-components'
+import styled from 'styled-components';
 
 export const Wrapper = styled.div`
-  margin: 50px 0;
+  margin-top: ${({ theme }) => theme.margins.fifty}px;
   width: 400px;
 
-  @media (max-width: ${Dimensions.mobile}px) {
-    margin: 10px 0;
+  @media (max-width: ${({ theme }) => theme.dimensions.mobile}px) {
+    margin-top: ${({ theme }) => theme.margins.ten}px;
     width: 110px;
     padding-left: 5px;
   }
-`
+`;
 
 export const Text = styled.p`
   padding-bottom: 25px;
-  font-family: ${FontFamily.POPPINS};
-  font-size: ${FontSize.NORMAL}px;
-  font-weight: ${FontWeight.EXTRA_LIGHT};
+  font-size: ${({ theme }) => theme.fontSizes.m}px;
+  font-weight: ${({ theme }) => theme.fontWeights.xxs};
   line-height: 129%;
 
-  @media (max-width: ${Dimensions.mobile}px) {
+  @media (max-width: ${({ theme }) => theme.dimensions.mobile}px) {
     padding-left: 5px;
     padding-bottom: 5px;
-    font-size: ${FontSize.SMALL}px;
+    font-size: ${({ theme }) => theme.fontSizes.s}px;
   }
-`
+`;
 
 export const Divider = styled.hr`
   width: 100%;
   border: 0;
-  border-top: 2px solid ${Colors.MEDIUM_GRAY};
-`
+  border-top: 2px solid ${({ theme }) => theme.colors.MEDIUM_GRAY};
+`;

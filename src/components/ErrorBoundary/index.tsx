@@ -1,23 +1,25 @@
-import { errorBoundaryText } from '@constants/texts/components/errorBoundary'
-import { Component } from 'react'
+import { Component, ErrorInfo } from 'react';
 
-import { ErrorMessage, Wrapper } from './styles'
-import { ErrorBoundaryProps, ErrorBoundaryState } from './types'
+import { errorBoundaryText } from '@constants/config/components/errorBoundary';
 
-const { message } = errorBoundaryText
+import { ErrorMessage, Wrapper } from './styles';
+import { ErrorBoundaryProps, ErrorBoundaryState } from './types';
+
+const { message } = errorBoundaryText;
 
 class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
   constructor(props: ErrorBoundaryProps) {
-    super(props)
-    this.state = { hasError: false }
+    super(props);
+    this.state = { hasError: false };
   }
 
   public static getDerivedStateFromError(): ErrorBoundaryState {
-    return { hasError: true }
+    return { hasError: true };
   }
 
-  public componentDidCatch(error: Error) {
-    this.setState({ error: error })
+  public componentDidCatch(error: Error, errorInfo: ErrorInfo) {
+    this.setState({ error: error });
+    console.error('errorInfo:', errorInfo);
   }
 
   public render() {
@@ -26,11 +28,11 @@ class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
         <Wrapper>
           <ErrorMessage>{message}</ErrorMessage>
         </Wrapper>
-      )
+      );
     }
 
-    return this.props.children
+    return this.props.children;
   }
 }
 
-export default ErrorBoundary
+export default ErrorBoundary;

@@ -1,12 +1,8 @@
-import BankcardPage from '@pages/BankcardPage'
-import ContactPage from '@pages/ContactPage'
-import HomePage from '@pages/HomePage'
-import TimelinePage from '@pages/TimelinePage'
-import React from 'react'
+import { ComponentType } from 'react';
 
 export interface IRoute {
-  path: string
-  element: React.ComponentType
+  path: string;
+  element: ComponentType;
 }
 
 export enum AppRoutes {
@@ -16,11 +12,3 @@ export enum AppRoutes {
   CONTACT = '/contact',
   NOT_FOUND = '*',
 }
-
-export const publicAppRoutes: IRoute[] = [
-  { path: AppRoutes.HOME, element: HomePage },
-  { path: AppRoutes.TIMELINE, element: TimelinePage },
-  { path: AppRoutes.BANKCARD, element: BankcardPage },
-  { path: AppRoutes.CONTACT, element: ContactPage },
-  { path: AppRoutes.NOT_FOUND, element: HomePage },
-]

@@ -1,5 +1,13 @@
 export interface HeaderProps {
-  isDarkTheme: boolean
+  isDarkTheme: boolean;
 
-  toggleTheme: () => void
+  toggleTheme: () => void;
+}
+
+export interface HeaderNavProps {
+  isBurgerMenuVisible: boolean;
+}
+
+export interface HeaderLinkProps {
+  isActive: boolean;
 }

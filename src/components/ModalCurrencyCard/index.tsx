@@ -1,6 +1,7 @@
-import { modalCurrencyCardText } from '@constants/texts/components/modalCurrencyCard'
-import { ICurrencyItem } from '@models/ICurrencyItem'
-import React, { FC, useState } from 'react'
+import React, { FC, useState } from 'react';
+
+import { modalCurrencyCardText } from '@constants/config/components/modalCurrencyCard';
+import { ICurrencyItem } from '@types';
 
 import {
   Button,
@@ -13,8 +14,8 @@ import {
   SelectWrapper,
   Status,
   Wrapper,
-} from './styles'
-import { ModalCurrencyCardProps } from './types'
+} from './styles';
+import { ModalCurrencyCardProps } from './types';
 
 const ModalCurrencyCard: FC<ModalCurrencyCardProps> = ({
   isVisible,
@@ -22,64 +23,66 @@ const ModalCurrencyCard: FC<ModalCurrencyCardProps> = ({
   chosenCurrency,
   allCurrenciesArray,
 }) => {
-  const [value, setValue] = useState<ICurrencyItem>()
+  const [value, setValue] = useState<ICurrencyItem>();
+  const [isDropdownVisible, setIsDropdownVisible] = useState<boolean>(false);
 
   if (!isVisible) {
-    return null
+    return null;
   }
 
   const options = allCurrenciesArray.filter(
     (item) => item.code !== chosenCurrency.code
-  )
+  );
 
   const selectOption = (option: ICurrencyItem) => {
-    setValue(option)
-  }
+    setValue(option);
+    setIsDropdownVisible(false);
+  };
 
-  const { selectButtonText, equalsTo, closeButtonText } = modalCurrencyCardText
+  const { selectButtonText, equalsTo, closeButtonText } = modalCurrencyCardText;
 
   return (
-    isVisible && (
-      <Wrapper>
-        <ContentWrapper>
-          <SelectWrapper>
-            <SelectButton data-cy="selectCurrency">
-              {selectButtonText}
-            </SelectButton>
-            <SelectMenu>
-              {options.map((option) => (
-                <SelectItem
-                  key={option.code}
-                  onClick={(e) => {
-                    e.stopPropagation()
-                    selectOption(option)
-                  }}
-                  data-cy="selectCurrencyItem"
-                >
-                  {option.code}
-                </SelectItem>
-              ))}
-            </SelectMenu>
-          </SelectWrapper>
-          {value && (
-            <CurrencyWrapper>
-              <Name>{value?.code}</Name>
-              <Status>{equalsTo}</Status>
-            </CurrencyWrapper>
-          )}
-          <CurrencyWrapper>
-            <Name>{chosenCurrency.code}</Name>
-            {value && (
-              <Status>
-                {(chosenCurrency.value / value?.value).toFixed(8)}
-              </Status>
-            )}
-          </CurrencyWrapper>
-          <Button onClick={handleClose}>{closeButtonText}</Button>
-        </ContentWrapper>
-      </Wrapper>
-    )
-  )
-}
+    <Wrapper>
+      <ContentWrapper>
+        <Button onClick={handleClose}>{closeButtonText}</Button>
+        <SelectWrapper>
+          <SelectButton
+            data-cy="selectCurrency"
+            onClick={() => setIsDropdownVisible(true)}
+          >
+            {value ? value.code : selectButtonText}
+          </SelectButton>
 
-export default ModalCurrencyCard
+          <SelectMenu isDropdownVisible={isDropdownVisible}>
+            {options.map((option) => (
+              <SelectItem
+                key={option.code}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  selectOption(option);
+                }}
+                data-cy="selectCurrencyItem"
+              >
+                {option.code}
+              </SelectItem>
+            ))}
+          </SelectMenu>
+        </SelectWrapper>
+        {value && (
+          <CurrencyWrapper>
+            <Name>{value?.code}</Name>
+            <Status>{equalsTo}</Status>
+          </CurrencyWrapper>
+        )}
+        <CurrencyWrapper>
+          <Name>{chosenCurrency.code}</Name>
+          {value && (
+            <Status>{(chosenCurrency.value / value?.value).toFixed(8)}</Status>
+          )}
+        </CurrencyWrapper>
+      </ContentWrapper>
+    </Wrapper>
+  );
+};
+
+export default ModalCurrencyCard;

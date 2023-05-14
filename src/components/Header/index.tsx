@@ -1,35 +1,59 @@
-import MyLogoSvg from '@assets/svg/logo/logo.svg'
-import { NAVIGATION } from '@constants/routes/navigation'
-import { headerText } from '@constants/texts/components/header'
-import React, { FC, useState } from 'react'
+import React, { FC, useState } from 'react';
+
+import MyLogoSvg from '@assets/svg/logo/logo.svg';
+import { headerText } from '@constants/config/components/header';
+import { NAVIGATION } from '@constants/routes/navigation';
 
 import {
+  Bar,
   HeaderLink,
   HeaderNav,
   HeaderWrapper,
   Logo,
   LogoWrapper,
+  ToggleMenu,
   ToggleSwitch,
-} from './styles'
-import { HeaderProps } from './types'
+} from './styles';
+import { HeaderProps } from './types';
 
 const Header: FC<HeaderProps> = ({ toggleTheme, isDarkTheme }) => {
-  const [isToggled, setIsToggled] = useState<boolean>(isDarkTheme)
+  const [isToggled, setIsToggled] = useState<boolean>(isDarkTheme);
+  const [isActiveLink, setIsActiveLink] = useState<number>(0);
+  const [isBurgerMenuVisible, setIsBurgerMenuVisible] =
+    useState<boolean>(false);
 
-  const onToggle = () => {
-    setIsToggled(!isToggled)
-    toggleTheme()
-  }
-  const { imgAlt, inputType } = headerText
+  const onHandlerToggle = () => {
+    setIsToggled(!isToggled);
+    toggleTheme();
+  };
+
+  const onHandlerActiveLink = (index: number) => () => {
+    setIsActiveLink(index);
+  };
+
+  const onHandlerShowMenu = () => {
+    setIsBurgerMenuVisible(!isBurgerMenuVisible);
+  };
+  const { imgAlt, inputType } = headerText;
 
   return (
     <HeaderWrapper>
+      <ToggleMenu href="#" onClick={onHandlerShowMenu}>
+        <Bar></Bar>
+        <Bar></Bar>
+        <Bar></Bar>
+      </ToggleMenu>
       <LogoWrapper>
         <Logo src={MyLogoSvg} alt={imgAlt} />
       </LogoWrapper>
-      <HeaderNav>
-        {NAVIGATION.map(({ text, path }) => (
-          <HeaderLink to={path} key={path}>
+      <HeaderNav isBurgerMenuVisible={isBurgerMenuVisible}>
+        {NAVIGATION.map(({ text, path }, index) => (
+          <HeaderLink
+            to={path}
+            key={path}
+            onClick={onHandlerActiveLink(index)}
+            isActive={isActiveLink === index}
+          >
             {text}
           </HeaderLink>
         ))}
@@ -37,11 +61,11 @@ const Header: FC<HeaderProps> = ({ toggleTheme, isDarkTheme }) => {
       <ToggleSwitch
         type={inputType}
         checked={isToggled}
-        onChange={onToggle}
+        onChange={onHandlerToggle}
         data-cy="toggleTheme"
       />
     </HeaderWrapper>
-  )
-}
+  );
+};
 
-export default Header
+export default Header;
