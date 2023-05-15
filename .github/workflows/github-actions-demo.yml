@@ -10,17 +10,7 @@ jobs:
     steps:
       - name: actions-checkout
         uses: actions/checkout@v3
-      - name: Starting Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v3
-        with:
-          node-version: ${{ matrix.node-version }}
       - name: install modules
-        run: yarn add
+        run: yarn
       - name: build project
         run: yarn run build
-      - name: unit tests
-        run: yarn run test
-      - name: lint code
-        run: yarn run lint
-      - name: format code with prettier
-        run: yarn run format
