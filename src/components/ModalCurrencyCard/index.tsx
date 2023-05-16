@@ -1,7 +1,7 @@
 import React, { FC, useState } from 'react';
 
+import { ICurrencyItem } from '@/@types/index';
 import { modalCurrencyCardText } from '@constants/config/components';
-import { ICurrencyItem } from '@typess/index';
 
 import {
   Button,

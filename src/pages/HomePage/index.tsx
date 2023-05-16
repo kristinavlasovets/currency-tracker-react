@@ -1,13 +1,13 @@
 import React, { FC, useEffect, useMemo, useState } from 'react';
 import { createPortal } from 'react-dom';
 
+import { ICurrencyItem } from '@/@types/index';
 import { getCurrencyData } from '@api/index';
 import CurrencyCard from '@components/CurrencyCard';
 import ModalCurrencyCard from '@components/ModalCurrencyCard';
 import SectionHeading from '@components/SectionHeading';
 import { sectionHeadingText } from '@constants/config/components';
 import { Currencies } from '@constants/currencies';
-import { ICurrencyItem } from '@typess/index';
 
 import { CardWrapper, Text, Wrapper } from './styles';
 

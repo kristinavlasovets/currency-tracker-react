@@ -28,7 +28,7 @@ module.exports = {
       '@api': path.resolve(__dirname, '../src/api'),
       '@styles': path.resolve(__dirname, '../src/styles'),
       '@theme': path.resolve(__dirname, '../src/theme'),
-      '@typess': path.resolve(__dirname, '../src/typess'),
+      '@types': path.resolve(__dirname, '../src/@types'),
       '@utils': path.resolve(__dirname, '../src/utils'),
     },
   },

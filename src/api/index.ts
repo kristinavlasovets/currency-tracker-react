@@ -1,7 +1,7 @@
 import axios, { AxiosResponse } from 'axios';
 
+import { IChartCurrency, ICurrency } from '@/@types/index';
 import { envVariables } from '@constants/envVariables';
-import { IChartCurrency, ICurrency } from '@typess/index';
 
 const { currencyApiUrl, currencyApiKey, coinApiUrl, coinApiKey } = envVariables;
 

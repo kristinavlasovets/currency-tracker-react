@@ -16,7 +16,7 @@
       "@api/*": ["./api/*"],
       "@styles/*": ["./styles/*"],
       "@theme/*": ["./theme/*"],
-      "@typess/*": ["./typess/*"],
+      "@types/*": ["./@types/*"],
       "@utils/*": ["./utils/*"]
     },
     "jsx": "react-jsx",

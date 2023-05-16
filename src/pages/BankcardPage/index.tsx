@@ -1,10 +1,10 @@
 import React, { ChangeEvent, FC, useState } from 'react';
 
+import { ICurrencyItem } from '@/@types/index';
 import MySearchIconSvg from '@assets/svg/icons/bankcardPage/search.svg';
 import { bankcardText } from '@constants/config/pages/bankcard';
 import { Currencies } from '@constants/currencies';
 import { allCurrenciesArray } from '@shared/sharedData';
-import { ICurrencyItem } from '@typess/index';
 
 import { useMap } from '../../hooks/useMap';
 

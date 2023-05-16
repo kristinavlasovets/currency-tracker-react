@@ -1,11 +1,11 @@
 import React, { FC, useEffect, useState } from 'react';
 
+import { ICurrency } from '@/@types/index';
 import { getCurrencyData } from '@api/index';
 import MyLargeIconSvg from '@assets/svg/icons/statusLine/largeIcon.svg';
 import MyMediumIconSvg from '@assets/svg/icons/statusLine/mediumIcon.svg';
 import MySmallIconSvg from '@assets/svg/icons/statusLine/smallIcon.svg';
 import { statusLineText } from '@constants/config/components';
-import { ICurrency } from '@typess/index';
 
 import {
   IconWrapper,

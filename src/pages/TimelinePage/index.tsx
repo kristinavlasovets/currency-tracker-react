@@ -12,13 +12,13 @@ import {
 } from 'chart.js';
 import { Bar, Line } from 'react-chartjs-2';
 
+import { IChartCurrency, IOption } from '@/@types/index';
 import { getTimelineData } from '@api/index';
 import { timelineText } from '@constants/config/pages/timeline';
 import { Colors } from '@constants/styles/colors';
 import { currencyIcons } from '@constants/styles/icons';
 import chooseCurrencyIconHandler from '@helpers/index';
 import { options } from '@shared/sharedData';
-import { IChartCurrency, IOption } from '@typess/index';
 
 import {
   ChartWrapper,
