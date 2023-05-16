@@ -4,7 +4,9 @@ import { ThemeProvider } from 'styled-components';
 import { render } from '@testing-library/react';
 
 import { darkTheme } from '../../../styles/theme';
-import SectionHeading from '../';
+import SectionHeading from '..';
+
+import '@testing-library/jest-dom';
 
 describe('rendering SectionHeading', () => {
   test('check text', () => {

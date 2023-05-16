@@ -1,19 +1,19 @@
 import styled from 'styled-components';
 
 export const Wrapper = styled.div`
-  margin: 0 auto;
-  width: 100%;
-  height: 460px;
+  margin: ${({ theme }) => theme.margins.zero}px auto;
+  width: ${({ theme }) => theme.width.hundred}%;
+  height: ${({ theme }) => theme.height.fourHundredSixty}px;
   display: flex;
   justify-content: center;
   align-items: center;
-  padding-bottom: 60px;
+  padding-bottom: ${({ theme }) => theme.paddings.sixty}px;
   background: ${({ theme }) => theme.colors.BOX_GRADIENT_BLACK};
 
   @media (max-width: ${({ theme }) => theme.dimensions.mobile}px) {
-    padding-top: 30px;
     height: fit-content;
-    padding-bottom: 30px;
+    padding-top: ${({ theme }) => theme.paddings.thirty}px;
+    padding-bottom: ${({ theme }) => theme.paddings.thirty}px;
   }
 `;
 
@@ -35,7 +35,7 @@ export const TitleWrapper = styled.div`
 
   @media (max-width: ${({ theme }) => theme.dimensions.mobile}px) {
     align-items: center;
-    margin-bottom: 20px;
+    margin-bottom: ${({ theme }) => theme.margins.twenty}px;
   }
 `;
 
@@ -68,7 +68,7 @@ export const TitleTwo = styled.h1`
 `;
 
 export const Subtitle = styled.p`
-  width: 50%;
+  width: ${({ theme }) => theme.width.fifty}%;
   align-self: flex-end;
   text-align: center;
   background: transparent;
@@ -78,16 +78,15 @@ export const Subtitle = styled.p`
   line-height: 187%;
 
   @media (max-width: ${({ theme }) => theme.dimensions.mobile}px) {
-    width: 90%;
+    width: ${({ theme }) => theme.width.ninety}%;
   }
 `;
 
 export const LogoWrapper = styled.div`
   background: transparent;
-  width: 250px;
-  height: 250px;
-  margin-left: 120px;
-
+  width: ${({ theme }) => theme.width.twoHundredFifty}px;
+  height: ${({ theme }) => theme.height.twoHundredFifty}px;
+  margin-left: ${({ theme }) => theme.margins.hundredTwenty}px;
   @media (max-width: ${({ theme }) => theme.dimensions.mobile}px) {
     display: none;
   }
@@ -95,6 +94,6 @@ export const LogoWrapper = styled.div`
 
 export const Logo = styled.img`
   background: transparent;
-  width: 100%;
-  height: 100%;
+  width: ${({ theme }) => theme.width.hundred}%;
+  height: ${({ theme }) => theme.height.hundred}%;
 `;

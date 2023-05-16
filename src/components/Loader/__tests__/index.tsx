@@ -4,7 +4,7 @@ import { ThemeProvider } from 'styled-components';
 import { render, screen } from '@testing-library/react';
 
 import { darkTheme } from '../../../styles/theme';
-import Loader from '../';
+import Loader from '..';
 
 describe('rendering Loader', () => {
   test('check text', () => {

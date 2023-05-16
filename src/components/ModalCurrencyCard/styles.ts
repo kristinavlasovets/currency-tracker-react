@@ -4,21 +4,23 @@ import { SelectMenuProps } from './types';
 
 export const Wrapper = styled.div`
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+  top: ${({ theme }) => theme.top.zero}px;
+  left: ${({ theme }) => theme.left.zero}px;
+  width: ${({ theme }) => theme.width.hundred}%;
+  height: ${({ theme }) => theme.height.hundred}%;
   background: ${({ theme }) => theme.colors.MODAL_BG};
-  opacity: 0.9;
+  opacity: ${({ theme }) => theme.opacities.dotNine};
 `;
 
 export const ContentWrapper = styled.div`
   position: fixed;
-  top: 50%;
-  left: 50%;
-  width: 50%;
+  top: ${({ theme }) => theme.top.fifty}%;
+  left: ${({ theme }) => theme.left.fifty}%;
+  width: ${({ theme }) => theme.width.fifty}%;
   height: auto;
-  padding: 40px 40px 80px;
+  padding: ${({ theme }) => theme.paddings.fourty}px
+    ${({ theme }) => theme.paddings.fourty}px
+    ${({ theme }) => theme.paddings.hundred}px;
   transform: translate(-50%, -50%);
   display: flex;
   flex-direction: column;
@@ -28,14 +30,18 @@ export const ContentWrapper = styled.div`
   background: ${({ theme }) => theme.colors.DARK_GRAY};
 
   @media (max-width: ${({ theme }) => theme.dimensions.mobile}px) {
-    width: 90%;
+    width: ${({ theme }) => theme.width.ninety}%;
+    padding: ${({ theme }) => theme.paddings.fourty}px
+      ${({ theme }) => theme.paddings.fourty}px
+      ${({ theme }) => theme.paddings.fourty}px;
   }
 `;
 
 export const Button = styled.button`
-  margin-bottom: 30px;
-  padding: 5px 0;
-  width: 110px;
+  margin-bottom: ${({ theme }) => theme.margins.thirty}px;
+  padding: ${({ theme }) => theme.paddings.five}px
+    ${({ theme }) => theme.paddings.zero}px;
+  width: ${({ theme }) => theme.width.hundredTen}px;
   align-self: flex-end;
   outline: none;
   border: 1px solid ${({ theme }) => theme.colors.LIGHT_GRAY};
@@ -47,22 +53,22 @@ export const Button = styled.button`
   background: transparent;
   position: relative;
   overflow: hidden;
-  z-index: 1;
+  z-index: ${({ theme }) => theme.zIndexes.one};
   transition: color 250ms ease-in-out;
 
   &:after {
     content: '';
     position: absolute;
     display: block;
-    top: 0;
-    left: 50%;
+    top: ${({ theme }) => theme.top.zero}px;
+    left: ${({ theme }) => theme.left.fifty}%;
     transform: translateX(-50%);
-    width: 0;
-    height: 100%;
+    width: ${({ theme }) => theme.width.zero};
+    height: ${({ theme }) => theme.height.hundred}%;
     color: ${({ theme }) => theme.colors.DARK_GRAY};
     font-weight: ${({ theme }) => theme.fontWeights.s};
     background: ${({ theme }) => theme.colors.LIGHT_GRAY};
-    z-index: -1;
+    z-index: -${({ theme }) => theme.zIndexes.one};
     transition: width 250ms ease-in-out;
   }
 
@@ -71,18 +77,19 @@ export const Button = styled.button`
     font-weight: ${({ theme }) => theme.fontWeights.xs};
     background: ${({ theme }) => theme.colors.LIGHT_GRAY};
     &:after {
-      width: 110%;
+      width: ${({ theme }) => theme.width.hundredTen}%;
     }
   }
 
   @media (max-width: ${({ theme }) => theme.dimensions.mobile}px) {
-    width: 80px;
+    width: ${({ theme }) => theme.width.sixty}px;
+    font-size: ${({ theme }) => theme.fontSizes.xxs}px;
   }
 `;
 
 export const CurrencyWrapper = styled.div`
-  margin: 10px auto;
-  padding: 10px;
+  margin: ${({ theme }) => theme.margins.ten}px auto;
+  padding: ${({ theme }) => theme.paddings.ten}px;
   display: flex;
   justify-content: center;
   flex-direction: row;
@@ -105,14 +112,14 @@ export const Name = styled.p`
 `;
 
 export const Status = styled.p`
-  padding-left: 20px;
+  padding-left: ${({ theme }) => theme.paddings.twenty}px;
   color: ${({ theme }) => theme.colors.LIGHT_GRAY};
   background: transparent;
 `;
 
 export const SelectWrapper = styled.div`
-  margin-bottom: 20px;
-  width: 100%;
+  margin-bottom: ${({ theme }) => theme.margins.twenty}px;
+  width: ${({ theme }) => theme.width.hundred}%;
   height: fit-content;
   display: flex;
   justify-content: center;
@@ -121,8 +128,8 @@ export const SelectWrapper = styled.div`
 `;
 
 export const SelectButton = styled.button`
-  width: 80%;
-  height: 70px;
+  width: ${({ theme }) => theme.width.eighty}%;
+  height: ${({ theme }) => theme.height.seventy}px;
   border: 1px solid ${({ theme }) => theme.colors.LIGHT_GRAY};
   border-radius: ${({ theme }) => theme.borderRadiuses.s}px;
   font-size: ${({ theme }) => theme.fontSizes.m}px;
@@ -132,24 +139,24 @@ export const SelectButton = styled.button`
   cursor: pointer;
 
   @media (max-width: ${({ theme }) => theme.dimensions.mobile}px) {
-    width: 100%;
-    height: 40px;
+    width: ${({ theme }) => theme.width.hundred}%;
+    height: ${({ theme }) => theme.height.fourty}px;
     font-size: ${({ theme }) => theme.fontSizes.xs}px;
   }
 `;
 
 export const SelectMenu = styled.ul<SelectMenuProps>`
-  width: 80%;
-  height: 170px;
+  width: ${({ theme }) => theme.width.eighty}%;
+  height: ${({ theme }) => theme.height.hundredSeventy}px;
   position: absolute;
-  top: calc(100% + 5px);
+  top: calc(100% + ${({ theme }) => theme.top.five}px);
   border: 1px solid ${(props) => props.theme.fontColor};
   border-radius: ${({ theme }) => theme.borderRadiuses.xs}px;
   opacity: ${({ isDropdownVisible }) => (isDropdownVisible ? 1 : 0)};
   transform: ${({ isDropdownVisible }) =>
     isDropdownVisible ? 'translateY(0)' : 'translateY(-10px)'};
   transition: opacity 150ms ease-in-out;
-  z-index: 1000;
+  z-index: ${({ theme }) => theme.zIndexes.thousand};
   overflow: hidden;
   overflow-y: auto;
   pointer-events: ${({ isDropdownVisible }) =>
@@ -160,13 +167,13 @@ export const SelectMenu = styled.ul<SelectMenuProps>`
   }
 
   @media (max-width: ${({ theme }) => theme.dimensions.mobile}px) {
-    width: 100%;
-    height: 150px;
+    width: ${({ theme }) => theme.width.hundred}%;
+    height: ${({ theme }) => theme.height.hundredFifty}px;
   }
 `;
 
 export const SelectItem = styled.li`
-  padding: 5px;
+  padding: ${({ theme }) => theme.paddings.five}px;
   font-size: ${({ theme }) => theme.fontSizes.xs}px;
   font-weight: ${({ theme }) => theme.fontWeights.xs};
   color: ${({ theme }) => theme.colors.LIGHT_GRAY};

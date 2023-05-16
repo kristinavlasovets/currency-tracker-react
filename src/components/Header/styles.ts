@@ -4,15 +4,17 @@ import styled from 'styled-components';
 import { HeaderLinkProps, HeaderNavProps } from './types';
 
 export const HeaderWrapper = styled.header`
-  width: 100%;
-  height: 100px;
+  width: ${({ theme }) => theme.width.hundred}%;
+  height: ${({ theme }) => theme.height.hundred}px;
   display: flex;
   justify-content: center;
   align-items: center;
   background-color: ${(props) => props.theme.bodyColor};
 
   @media (max-width: ${({ theme }) => theme.dimensions.mobile}px) {
-    padding: 20px 50px 0px;
+    padding: ${({ theme }) => theme.paddings.twenty}px
+      ${({ theme }) => theme.paddings.fifty}px
+      ${({ theme }) => theme.paddings.zero}px;
     height: fit-content;
     flex-direction: column;
     align-items: flex-start;
@@ -22,13 +24,13 @@ export const HeaderWrapper = styled.header`
 
 export const ToggleMenu = styled.a`
   position: absolute;
-  top: 15px;
-  right: 15px;
+  top: ${({ theme }) => theme.top.fifteen}px;
+  right: ${({ theme }) => theme.right.fifteen}px;
   display: none;
   flex-direction: column;
   justify-content: space-between;
-  width: 30px;
-  height: 19px;
+  width: ${({ theme }) => theme.width.thirty}px;
+  height: ${({ theme }) => theme.height.nineteen}px;
 
   @media (max-width: ${({ theme }) => theme.dimensions.mobile}px) {
     display: flex;
@@ -36,20 +38,22 @@ export const ToggleMenu = styled.a`
 `;
 
 export const Bar = styled.span`
-  height: 1px;
-  width: 100%;
+  height: ${({ theme }) => theme.height.one}px;
+  width: ${({ theme }) => theme.width.hundred}%;
   background-color: ${({ theme }) => theme.colors.WHITE};
   border-radius: ${({ theme }) => theme.borderRadiuses.m}px;
 `;
 
 export const HeaderNav = styled.nav<HeaderNavProps>`
-  padding: 0px 50px 0px;
+  padding: ${({ theme }) => theme.paddings.zero}px
+    ${({ theme }) => theme.paddings.fifty}px
+    ${({ theme }) => theme.paddings.zero}px;
   display: flex;
   align-items: center;
   background-color: ${(props) => props.theme.bodyColor};
 
   @media (max-width: ${({ theme }) => theme.dimensions.mobile}px) {
-    padding: 0px;
+    padding: ${({ theme }) => theme.paddings.zero}px;
     flex-direction: column;
     align-items: flex-start;
     display: ${({ isBurgerMenuVisible }) =>
@@ -58,24 +62,25 @@ export const HeaderNav = styled.nav<HeaderNavProps>`
 `;
 
 export const LogoWrapper = styled.div`
-  width: 30px;
-  height: 30px;
+  width: ${({ theme }) => theme.width.thirty}px;
+  height: ${({ theme }) => theme.height.thirty}px;
 
   @media (max-width: ${({ theme }) => theme.dimensions.mobile}px) {
-    margin-bottom: 10px;
+    margin-bottom: ${({ theme }) => theme.margins.ten}px;
   }
 `;
 
 export const Logo = styled.img`
-  width: 100%;
-  height: 100%;
+  width: ${({ theme }) => theme.width.hundred}%;
+  height: ${({ theme }) => theme.height.hundred}%;
 `;
 
 export const HeaderLink = styled(Link)<HeaderLinkProps>`
   position: relative;
-  margin-right: 120px;
+  margin-right: ${({ theme }) => theme.margins.hundredTwenty}px;
+
   &:last-of-type {
-    margin-right: 0;
+    margin-right: ${({ theme }) => theme.margins.zero}px;
   }
   color: ${(props) => props.theme.fontColor};
   font-size: ${({ theme }) => theme.fontSizes.xs}px;
@@ -85,19 +90,24 @@ export const HeaderLink = styled(Link)<HeaderLinkProps>`
     content: '';
     position: absolute;
     background-color: ${({ theme }) => theme.colors.GREEN};
-    height: 3px;
-    width: ${({ isActive }) => (isActive ? '100%' : 0)};
-    left: 0;
-    bottom: -8px;
+    height: ${({ theme }) => theme.height.three}px;
+    width: ${({ isactive }) => (isactive === 'true' ? '100%' : 0)};
+    left: ${({ theme }) => theme.left.zero}px;
+    bottom: -${({ theme }) => theme.bottom.eight}px;
     transition: 0.3s;
   }
 
   &:hover:after {
-    width: 100%;
+    width: ${({ theme }) => theme.width.hundred}%;
   }
 
   @media (max-width: ${({ theme }) => theme.dimensions.mobile}px) {
-    padding-right: 0px;
+    padding-right: ${({ theme }) => theme.paddings.zero}px;
+    margin-bottom: ${({ theme }) => theme.margins.five}px;
+
+    &:after {
+      bottom: -${({ theme }) => theme.bottom.three}px;
+    }
   }
 `;
 
@@ -105,8 +115,8 @@ export const ToggleSwitch = styled.input`
   appearance: none;
   -webkit-appearance: none;
   position: relative;
-  height: 20px;
-  width: 40px;
+  height: ${({ theme }) => theme.height.twenty}px;
+  width: ${({ theme }) => theme.width.fourty}px;
   background-color: ${(props) => props.theme.bodyColor};
   border-radius: ${({ theme }) => theme.borderRadiuses.l}px;
   border: 1px solid ${(props) => props.theme.fontColor};
@@ -120,9 +130,9 @@ export const ToggleSwitch = styled.input`
   &:before {
     content: '';
     position: absolute;
-    height: 16px;
-    width: 16px;
-    left: 20px;
+    height: ${({ theme }) => theme.height.sixteen}px;
+    width: ${({ theme }) => theme.width.sixteen}px;
+    left: ${({ theme }) => theme.left.twenty}px;
     background-color: ${(props) => props.theme.bodyColor};
     border-radius: ${({ theme }) => theme.borderRadiuses.xl}%;
     border: 1px solid ${(props) => props.theme.fontColor};
@@ -131,11 +141,11 @@ export const ToggleSwitch = styled.input`
   }
 
   &:checked::before {
-    left: 0px;
+    left: ${({ theme }) => theme.left.zero}px;
   }
 
   @media (max-width: ${({ theme }) => theme.dimensions.mobile}px) {
-    margin-top: 10px;
-    margin-bottom: 10px;
+    margin-top: ${({ theme }) => theme.margins.ten}px;
+    margin-bottom: ${({ theme }) => theme.margins.ten}px;
   }
 `;

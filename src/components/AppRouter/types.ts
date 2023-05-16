@@ -2,7 +2,7 @@ import { ComponentType } from 'react';
 
 export interface IRoute {
   path: string;
-  element: ComponentType;
+  Element: ComponentType;
 }
 
 export enum AppRoutes {

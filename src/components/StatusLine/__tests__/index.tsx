@@ -4,7 +4,7 @@ import { ThemeProvider } from 'styled-components';
 import { render, screen } from '@testing-library/react';
 
 import { darkTheme } from '../../../styles/theme';
-import StatusLine from '../';
+import StatusLine from '..';
 
 describe('rendering StatusLine', () => {
   test('check text', () => {

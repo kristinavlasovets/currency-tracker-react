@@ -6,7 +6,18 @@
     "lib": ["DOM", "ESNext"],
     "baseUrl": "./src",
     "paths": {
-      "@*": ["*"]
+      "@/*": ["./*"],
+      "@assets/*": ["./assets/*"],
+      "@components/*": ["./components/*"],
+      "@constants/*": ["./constants/*"],
+      "@helpers/*": ["./helpers/*"],
+      "@pages/*": ["./pages/*"],
+      "@shared/*": ["./shared/*"],
+      "@api/*": ["./api/*"],
+      "@styles/*": ["./styles/*"],
+      "@theme/*": ["./theme/*"],
+      "@typess/*": ["./typess/*"],
+      "@utils/*": ["./utils/*"]
     },
     "jsx": "react-jsx",
     "noEmit": true,
@@ -17,6 +28,14 @@
     "forceConsistentCasingInFileNames": true,
     "resolveJsonModule": true
   },
-  "include": ["./src/**/*"],
+  "types": ["node", "jest", "@testing-library/jest-dom"],
+  "include": [
+    "./src/**/*",
+    ".eslintrc.js",
+    ".babelrc",
+    "jest.config.js",
+    "setupTests.ts",
+    "cypress.config.ts"
+  ],
   "exclude": ["node_modules", ".vscode", "__mocks__"]
 }

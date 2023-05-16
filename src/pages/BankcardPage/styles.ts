@@ -4,7 +4,7 @@ import { DataResultProps } from './types';
 
 export const Wrapper = styled.div`
   margin: ${({ theme }) => theme.margins.eighty}px auto;
-  width: 100%;
+  width: ${({ theme }) => theme.width.hundred}%;
   height: fit-content;
   display: flex;
   flex-direction: column;
@@ -30,25 +30,25 @@ export const Text = styled.p`
 
 export const Search = styled.div`
   margin: ${({ theme }) => theme.margins.thirty}px auto;
-  height: 180px;
+  height: ${({ theme }) => theme.height.hundredEighty}px;
   display: flex;
   flex-direction: column;
 
   @media (max-width: ${({ theme }) => theme.dimensions.mobile}px) {
     margin: ${({ theme }) => theme.margins.twenty}px auto;
-    height: 80px;
+    height: ${({ theme }) => theme.height.eighty}px;
   }
 `;
 
 export const SearchInputs = styled.div`
-  width: 100%;
+  width: ${({ theme }) => theme.width.hundred}%;
 `;
 
 export const Input = styled.input`
   position: relative;
-  width: 350px;
-  height: 45px;
-  padding: 15px;
+  width: ${({ theme }) => theme.width.threeHundredFifty}px;
+  height: ${({ theme }) => theme.height.fourtyFive}px;
+  padding: ${({ theme }) => theme.paddings.fifteen}px;
   border: 0;
   border-radius: ${({ theme }) => theme.borderRadiuses.s}px;
   font-size: ${({ theme }) => theme.fontSizes.xs}px;
@@ -57,8 +57,8 @@ export const Input = styled.input`
   background: ${({ theme }) => theme.colors.SEARCH_DARK_GRAY};
 
   @media (max-width: ${({ theme }) => theme.dimensions.mobile}px) {
-    width: 180px;
-    height: 30px;
+    width: ${({ theme }) => theme.width.hundredEighty}px;
+    height: ${({ theme }) => theme.height.thirty}px;
     font-size: ${({ theme }) => theme.fontSizes.xxs}px;
   }
 `;
@@ -66,8 +66,8 @@ export const Input = styled.input`
 export const SearchIconWrapper = styled.div`
   position: absolute;
   transform: translate(315px, -140%);
-  width: 25px;
-  height: 25px;
+  width: ${({ theme }) => theme.width.twentyFive}px;
+  height: ${({ theme }) => theme.height.twentyFive}px;
   background: transparent;
 
   @media (max-width: ${({ theme }) => theme.dimensions.mobile}px) {
@@ -76,17 +76,17 @@ export const SearchIconWrapper = styled.div`
 `;
 
 export const SearchIcon = styled.img`
-  width: 100%;
-  height: 100%;
-  padding: 5px;
+  width: ${({ theme }) => theme.width.hundred}%;
+  height: ${({ theme }) => theme.height.hundred}%;
+  padding: ${({ theme }) => theme.paddings.five}px;
   cursor: pointer;
   background: transparent;
 `;
 
 export const DataResult = styled.div<DataResultProps>`
   margin-top: ${({ theme }) => theme.margins.five}px;
-  width: 350px;
-  height: 150px;
+  width: ${({ theme }) => theme.width.threeHundredFifty}px;
+  height: ${({ theme }) => theme.height.hundredFifty}px;
   border: 0;
   border-radius: ${({ theme }) => theme.borderRadiuses.s}px;
 
@@ -104,14 +104,14 @@ export const DataResult = styled.div<DataResultProps>`
   }
 
   @media (max-width: ${({ theme }) => theme.dimensions.mobile}px) {
-    width: 180px;
-    height: 80px;
+    width: ${({ theme }) => theme.width.hundredEighty}px;
+    height: ${({ theme }) => theme.height.eighty}px;
   }
 `;
 
 export const DataItem = styled.div`
-  width: 100%;
-  padding: 10px;
+  width: ${({ theme }) => theme.width.hundred}%;
+  padding: ${({ theme }) => theme.paddings.ten}px;
   font-size: ${({ theme }) => theme.fontSizes.xs}px;
   font-weight: ${({ theme }) => theme.fontWeights.xs};
   color: ${({ theme }) => theme.colors.SEARCH_LIGHT_GRAY};
@@ -123,25 +123,25 @@ export const DataItem = styled.div`
   }
 
   @media (max-width: ${({ theme }) => theme.dimensions.mobile}px) {
-    padding: 5px;
-    padding-left: 15px;
+    padding: ${({ theme }) => theme.paddings.five}px;
+    padding-left: ${({ theme }) => theme.paddings.fifteen}px;
     font-size: ${({ theme }) => theme.fontSizes.xxs}px;
   }
 `;
 
 export const MapWrapper = styled.div`
   position: relative;
-  width: 100%;
+  width: ${({ theme }) => theme.width.hundred}%;
   height: calc(100vh - 77px);
   margin-bottom: ${({ theme }) => theme.margins.twoHundredsTen}px;
 
   @media (max-width: ${({ theme }) => theme.dimensions.mobile}px) {
-    height: 70vh;
+    height: ${({ theme }) => theme.height.seventy}vh;
     margin-bottom: ${({ theme }) => theme.margins.fifty}px;
   }
 `;
 export const Map = styled.div`
   position: absolute;
-  width: 100%;
-  height: 100%;
+  width: ${({ theme }) => theme.width.hundred}%;
+  height: ${({ theme }) => theme.height.hundred}%;
 `;

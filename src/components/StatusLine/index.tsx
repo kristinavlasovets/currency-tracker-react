@@ -1,12 +1,11 @@
 import React, { FC, useEffect, useState } from 'react';
 
+import { getCurrencyData } from '@api/index';
 import MyLargeIconSvg from '@assets/svg/icons/statusLine/largeIcon.svg';
 import MyMediumIconSvg from '@assets/svg/icons/statusLine/mediumIcon.svg';
 import MySmallIconSvg from '@assets/svg/icons/statusLine/smallIcon.svg';
-import { statusLineText } from '@constants/config/components/statusLine';
-import { ICurrency } from '@types';
-
-import { getCurrencyData } from '../../services';
+import { statusLineText } from '@constants/config/components';
+import { ICurrency } from '@typess/index';
 
 import {
   IconWrapper,
@@ -19,11 +18,16 @@ import {
 
 const StatusLine: FC = () => {
   const [updateTime, setUpdateTime] = useState<ICurrency>({} as ICurrency);
+  const [errorMessage, setErrorMessage] = useState<string>('');
 
   useEffect(() => {
-    getCurrencyData().then(({ data }) => {
-      setUpdateTime(data);
-    });
+    getCurrencyData()
+      .then(({ data }) => {
+        setUpdateTime(data);
+      })
+      .catch((error) => {
+        setErrorMessage(error.message);
+      });
   }, []);
 
   const { text, hours, imgAlt } = statusLineText;
@@ -34,11 +38,15 @@ const StatusLine: FC = () => {
         <MediumIcon src={MyMediumIconSvg} alt={imgAlt} />
         <LargeIcon src={MyLargeIconSvg} alt={imgAlt} />
       </IconWrapper>
-      <Text>
-        {text}
-        {updateTime?.meta?.last_updated_at.slice(11, 16)}
-        {hours}
-      </Text>
+      {errorMessage ? (
+        <Text>{errorMessage}</Text>
+      ) : (
+        <Text>
+          {text}
+          {updateTime?.meta?.last_updated_at.slice(11, 16)}
+          {hours}
+        </Text>
+      )}
     </Wrapper>
   );
 };

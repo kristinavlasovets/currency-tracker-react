@@ -1,7 +1,7 @@
 import React, { FC, useState } from 'react';
 
-import { modalCurrencyCardText } from '@constants/config/components/modalCurrencyCard';
-import { ICurrencyItem } from '@types';
+import { modalCurrencyCardText } from '@constants/config/components';
+import { ICurrencyItem } from '@typess/index';
 
 import {
   Button,
@@ -23,7 +23,7 @@ const ModalCurrencyCard: FC<ModalCurrencyCardProps> = ({
   chosenCurrency,
   allCurrenciesArray,
 }) => {
-  const [value, setValue] = useState<ICurrencyItem>();
+  const [currentCurrency, setCurrentCurrency] = useState<ICurrencyItem>();
   const [isDropdownVisible, setIsDropdownVisible] = useState<boolean>(false);
 
   if (!isVisible) {
@@ -35,8 +35,11 @@ const ModalCurrencyCard: FC<ModalCurrencyCardProps> = ({
   );
 
   const selectOption = (option: ICurrencyItem) => {
-    setValue(option);
+    setCurrentCurrency(option);
     setIsDropdownVisible(false);
+  };
+  const handleOption = (option: ICurrencyItem) => () => {
+    selectOption(option);
   };
 
   const { selectButtonText, equalsTo, closeButtonText } = modalCurrencyCardText;
@@ -50,17 +53,13 @@ const ModalCurrencyCard: FC<ModalCurrencyCardProps> = ({
             data-cy="selectCurrency"
             onClick={() => setIsDropdownVisible(true)}
           >
-            {value ? value.code : selectButtonText}
+            {currentCurrency ? currentCurrency.code : selectButtonText}
           </SelectButton>
-
           <SelectMenu isDropdownVisible={isDropdownVisible}>
             {options.map((option) => (
               <SelectItem
                 key={option.code}
-                onClick={(e) => {
-                  e.stopPropagation();
-                  selectOption(option);
-                }}
+                onClick={handleOption(option)}
                 data-cy="selectCurrencyItem"
               >
                 {option.code}
@@ -68,16 +67,18 @@ const ModalCurrencyCard: FC<ModalCurrencyCardProps> = ({
             ))}
           </SelectMenu>
         </SelectWrapper>
-        {value && (
+        {currentCurrency && (
           <CurrencyWrapper>
-            <Name>{value?.code}</Name>
+            <Name>{currentCurrency?.code}</Name>
             <Status>{equalsTo}</Status>
           </CurrencyWrapper>
         )}
         <CurrencyWrapper>
           <Name>{chosenCurrency.code}</Name>
-          {value && (
-            <Status>{(chosenCurrency.value / value?.value).toFixed(8)}</Status>
+          {currentCurrency && (
+            <Status>
+              {(chosenCurrency.value / currentCurrency?.value).toFixed(8)}
+            </Status>
           )}
         </CurrencyWrapper>
       </ContentWrapper>

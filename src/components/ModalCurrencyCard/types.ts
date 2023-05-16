@@ -1,4 +1,4 @@
-import { ICurrencyItem } from '@types';
+import { ICurrencyItem } from '@typess/index';
 
 export interface ModalCurrencyCardProps {
   isVisible: boolean;

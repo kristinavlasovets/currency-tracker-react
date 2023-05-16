@@ -1,10 +1,14 @@
+/* eslint-env jest */
 import React from 'react';
 import { ThemeProvider } from 'styled-components';
 
 import { render, screen } from '@testing-library/react';
 
 import { darkTheme } from '../../../styles/theme';
-import Banner from '../';
+import Banner from '..';
+
+import '@testing-library/jest-dom/extend-expect';
+import '@testing-library/jest-dom';
 
 describe('rendering Banner', () => {
   test('check text', () => {

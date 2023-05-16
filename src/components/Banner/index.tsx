@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 
 import MyLogoSvg from '@assets/svg/logo/logo.svg';
-import { bannerText } from '@constants/config/components/banner';
+import { bannerText } from '@constants/config/components';
 
 import {
   Logo,

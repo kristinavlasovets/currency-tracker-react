@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 
-import { footerText } from '@constants/config/components/footer';
+import { footerText } from '@constants/config/components';
 
 import {
   ChapterText,

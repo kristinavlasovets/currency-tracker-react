@@ -9,5 +9,5 @@ export interface HeaderNavProps {
 }
 
 export interface HeaderLinkProps {
-  isActive: boolean;
+  isactive: string;
 }

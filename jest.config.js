@@ -1,8 +1,9 @@
 /** @type {import('ts-jest').JestConfigWithTsJest} */
+
 module.exports = {
   preset: 'ts-jest',
   testEnvironment: 'jsdom',
-  setupFilesAfterEnv: ['@testing-library/jest-dom/extend-expect'],
+  setupFilesAfterEnv: ['<rootDir>/setupTests.ts'],
   setupFiles: ['<rootDir>/jest.stub.js'],
   modulePaths: ['<rootDir>'],
   moduleNameMapper: {
@@ -14,5 +15,6 @@ module.exports = {
     '@utils/(.*)': '<rootDir>/src/utils/$1',
     '@pages/(.*)': '<rootDir>/src/pages/$1',
     '@shared/(.*)': '<rootDir>/src/shared/$1',
+    '@api/(.*)': '<rootDir>/src/api/$1',
   },
 };

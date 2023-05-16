@@ -2,43 +2,44 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 export const Wrapper = styled.footer`
-  width: 100%;
-  height: 380px;
-  padding: 0 210px;
+  width: ${({ theme }) => theme.width.hundred}%;
+  height: ${({ theme }) => theme.height.threeHundredEighty}px;
+  padding: ${({ theme }) => theme.paddings.zero}
+    ${({ theme }) => theme.paddings.twoHundredsTen}px;
   display: flex;
   flex-direction: column;
   align-items: center;
   background-color: ${(props) => props.theme.bodyColor};
 
   @media (max-width: ${({ theme }) => theme.dimensions.mobile}px) {
-    padding: 10px;
+    padding: ${({ theme }) => theme.paddings.ten}px;
     height: fit-content;
   }
 `;
 
 export const ContentWrapper = styled.div`
-  width: 100%;
-  height: 300px;
+  width: ${({ theme }) => theme.width.hundred}%;
+  height: ${({ theme }) => theme.height.threeHundred}px;
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
 
   @media (max-width: ${({ theme }) => theme.dimensions.mobile}px) {
-    padding: 10px;
+    padding: ${({ theme }) => theme.paddings.ten}px;
     flex-direction: column;
     height: fit-content;
   }
 `;
 
 export const ChapterWrapper = styled.div`
-  width: 480px;
-  max-width: 100%;
+  width: ${({ theme }) => theme.width.fourHundredEighty}px;
+  max-width: ${({ theme }) => theme.width.hundred}%;
   display: flex;
   flex-direction: column;
   align-items: center;
 
   @media (max-width: ${({ theme }) => theme.dimensions.mobile}px) {
-    width: 100%;
+    width: ${({ theme }) => theme.width.hundred}%;
   }
 `;
 
@@ -51,7 +52,7 @@ export const ChapterTitleWrapper = styled.div`
 `;
 
 export const ChapterTitle = styled.h2`
-  padding-bottom: 40px;
+  padding-bottom: ${({ theme }) => theme.paddings.fourty}px;
   background: ${({ theme }) => theme.colors.TEXT_GRADIENT_GREEN};
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent 0.8;
@@ -62,7 +63,7 @@ export const ChapterTitle = styled.h2`
 
   @media (max-width: ${({ theme }) => theme.dimensions.mobile}px) {
     font-size: ${({ theme }) => theme.fontSizes.xs}px;
-    padding-bottom: 10px;
+    padding-bottom: ${({ theme }) => theme.paddings.ten}px;
   }
 `;
 
@@ -72,7 +73,7 @@ export const ChapterText = styled.p`
   line-height: 150%;
 
   @media (max-width: ${({ theme }) => theme.dimensions.mobile}px) {
-    margin-bottom: 20px;
+    margin-bottom: ${({ theme }) => theme.margins.twenty}px;
     font-size: ${({ theme }) => theme.fontSizes.xxs}px;
   }
 `;
@@ -84,7 +85,7 @@ export const SubchapterWrapper = styled.div`
 
 export const SubchapterTitle = styled(Link)`
   position: relative;
-  padding-bottom: 40px;
+  padding-bottom: ${({ theme }) => theme.paddings.fourty}px;
   font-size: ${({ theme }) => theme.fontSizes.xs}px;
   font-weight: ${({ theme }) => theme.fontWeights.xs};
   line-height: 150%;
@@ -93,25 +94,25 @@ export const SubchapterTitle = styled(Link)`
     content: '';
     position: absolute;
     background-color: ${({ theme }) => theme.colors.GREEN};
-    height: 3px;
-    width: 0;
-    left: 0;
-    bottom: 30px;
+    height: ${({ theme }) => theme.height.three}px;
+    width: ${({ theme }) => theme.width.zero};
+    left: ${({ theme }) => theme.left.zero}px;
+    bottom: ${({ theme }) => theme.bottom.thirty}px;
     transition: 0.3s;
   }
 
   &:hover:after {
-    width: 100%;
+    width: ${({ theme }) => theme.width.hundred}%;
   }
 
   @media (max-width: ${({ theme }) => theme.dimensions.mobile}px) {
     font-size: ${({ theme }) => theme.fontSizes.xxs}px;
-    padding-bottom: 10px;
+    padding-bottom: ${({ theme }) => theme.paddings.ten}px;
   }
 `;
 
 export const SubchapterText = styled(Link)`
-  padding-bottom: 15px;
+  padding-bottom: ${({ theme }) => theme.paddings.fifteen}px;
   font-size: ${({ theme }) => theme.fontSizes.xs}px;
   font-weight: ${({ theme }) => theme.fontWeights.xs};
   color: ${({ theme }) => theme.colors.FOOTER_GRAY};
@@ -123,20 +124,20 @@ export const SubchapterText = styled(Link)`
 
   @media (max-width: ${({ theme }) => theme.dimensions.mobile}px) {
     font-size: ${({ theme }) => theme.fontSizes.xxs}px;
-    padding-bottom: 5px;
+    padding-bottom: ${({ theme }) => theme.paddings.five}px;
   }
 `;
 
 export const CopyrightNoticeWrapper = styled.div`
-  width: 100%;
-  height: 80px;
+  width: ${({ theme }) => theme.width.hundred}%;
+  height: ${({ theme }) => theme.height.eighty}px;
   display: flex;
   justify-content: center;
   align-items: center;
 
   @media (max-width: ${({ theme }) => theme.dimensions.mobile}px) {
     height: fit-content;
-    padding-bottom: 10px;
+    padding-bottom: ${({ theme }) => theme.paddings.ten}px;
   }
 `;
 

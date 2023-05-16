@@ -5,13 +5,13 @@ const hint = keyframes`
   100% {transform: scale(1.02)}`;
 
 export const CardWrapper = styled.div`
-  margin-top: 30px;
-  width: 400px;
-  height: 90px;
+  margin-top: ${({ theme }) => theme.margins.thirty}px;
+  width: ${({ theme }) => theme.width.fourHundred}px;
+  height: ${({ theme }) => theme.height.ninety}px;
   display: flex;
   flex-direction: row;
   align-items: center;
-  padding: 20px;
+  padding: ${({ theme }) => theme.paddings.twenty}px;
   gap: 20px;
   background: ${(props) => props.theme.currencyCardColor};
   border: 1px solid ${({ theme }) => theme.colors.MEDIUM_GRAY};
@@ -23,26 +23,29 @@ export const CardWrapper = styled.div`
   }
 
   @media (max-width: ${({ theme }) => theme.dimensions.mobile}px) {
-    margin: 10px 10px 0px 10px;
-    width: 180px;
-    height: 45px;
+    margin: ${({ theme }) => theme.margins.ten}px
+      ${({ theme }) => theme.margins.ten}px
+      ${({ theme }) => theme.margins.zero}px
+      ${({ theme }) => theme.margins.ten}px;
+    width: ${({ theme }) => theme.width.hundredEighty}px;
+    height: ${({ theme }) => theme.height.fourtyFive}px;
   }
 `;
 
 export const CardIconWrapper = styled.div`
-  width: 55px;
-  height: 55px;
+  width: ${({ theme }) => theme.width.fiftyFive}px;
+  height: ${({ theme }) => theme.height.fiftyFive}px;
   background: transparent;
 
   @media (max-width: ${({ theme }) => theme.dimensions.mobile}px) {
-    width: 25px;
-    height: 25px;
+    width: ${({ theme }) => theme.width.twentyFive}px;
+    height: ${({ theme }) => theme.height.twentyFive}px;
   }
 `;
 
 export const CardIcon = styled.img`
-  width: 100%;
-  height: 100%;
+  width: ${({ theme }) => theme.width.hundred}%;
+  height: ${({ theme }) => theme.height.hundred}%;
   background: transparent;
 `;
 
@@ -73,7 +76,7 @@ export const CardStatus = styled.p`
   background: transparent;
 
   @media (max-width: ${({ theme }) => theme.dimensions.mobile}px) {
-    padding-top: 5px;
+    padding-top: ${({ theme }) => theme.paddings.five}px;
     font-size: ${({ theme }) => theme.fontSizes.xxs}px;
     line-height: 100%;
   }

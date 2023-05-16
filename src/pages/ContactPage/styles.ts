@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export const Wrapper = styled.div`
   margin: ${({ theme }) => theme.margins.twoHundreds}px 0
     ${({ theme }) => theme.margins.twoHundreds}px;
-  width: 100%;
+  width: ${({ theme }) => theme.width.hundred}%;
   height: fit-content;
   display: flex;
   flex-direction: column;
@@ -17,7 +17,7 @@ export const Wrapper = styled.div`
 `;
 
 export const Title = styled.h3`
-  padding-bottom: 40px;
+  padding-bottom: ${({ theme }) => theme.paddings.fourty}px;
   font-family: 'Inter', sans-serif;
   font-size: ${({ theme }) => theme.fontSizes.m}px;
   font-weight: ${({ theme }) => theme.fontWeights.xs};
@@ -30,7 +30,7 @@ export const Title = styled.h3`
 `;
 
 export const Text = styled.p`
-  padding-bottom: 15px;
+  padding-bottom: ${({ theme }) => theme.paddings.fifteen}px;
   font-size: ${({ theme }) => theme.fontSizes.xs}px;
   font-weight: ${({ theme }) => theme.fontWeights.xs};
   color: ${({ theme }) => theme.colors.FOOTER_GRAY};

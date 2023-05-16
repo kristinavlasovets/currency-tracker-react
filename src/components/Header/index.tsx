@@ -1,7 +1,7 @@
-import React, { FC, useState } from 'react';
+import React, { FC, memo, useState } from 'react';
 
 import MyLogoSvg from '@assets/svg/logo/logo.svg';
-import { headerText } from '@constants/config/components/header';
+import { headerText } from '@constants/config/components';
 import { NAVIGATION } from '@constants/routes/navigation';
 
 import {
@@ -16,7 +16,7 @@ import {
 } from './styles';
 import { HeaderProps } from './types';
 
-const Header: FC<HeaderProps> = ({ toggleTheme, isDarkTheme }) => {
+const Header: FC<HeaderProps> = memo(({ toggleTheme, isDarkTheme }) => {
   const [isToggled, setIsToggled] = useState<boolean>(isDarkTheme);
   const [isActiveLink, setIsActiveLink] = useState<number>(0);
   const [isBurgerMenuVisible, setIsBurgerMenuVisible] =
@@ -39,9 +39,9 @@ const Header: FC<HeaderProps> = ({ toggleTheme, isDarkTheme }) => {
   return (
     <HeaderWrapper>
       <ToggleMenu href="#" onClick={onHandlerShowMenu}>
-        <Bar></Bar>
-        <Bar></Bar>
-        <Bar></Bar>
+        <Bar />
+        <Bar />
+        <Bar />
       </ToggleMenu>
       <LogoWrapper>
         <Logo src={MyLogoSvg} alt={imgAlt} />
@@ -52,7 +52,7 @@ const Header: FC<HeaderProps> = ({ toggleTheme, isDarkTheme }) => {
             to={path}
             key={path}
             onClick={onHandlerActiveLink(index)}
-            isActive={isActiveLink === index}
+            isactive={(isActiveLink === index).toString()}
           >
             {text}
           </HeaderLink>
@@ -66,6 +66,6 @@ const Header: FC<HeaderProps> = ({ toggleTheme, isDarkTheme }) => {
       />
     </HeaderWrapper>
   );
-};
+});
 
 export default Header;

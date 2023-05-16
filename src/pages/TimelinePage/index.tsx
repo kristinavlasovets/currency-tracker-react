@@ -12,13 +12,13 @@ import {
 } from 'chart.js';
 import { Bar, Line } from 'react-chartjs-2';
 
+import { getTimelineData } from '@api/index';
 import { timelineText } from '@constants/config/pages/timeline';
 import { Colors } from '@constants/styles/colors';
 import { currencyIcons } from '@constants/styles/icons';
-import chooseCurrencyIconHandler from '@helpers';
-import { getTimelineData } from '@services';
+import chooseCurrencyIconHandler from '@helpers/index';
 import { options } from '@shared/sharedData';
-import { IChartCurrency, IOption } from '@types';
+import { IChartCurrency, IOption } from '@typess/index';
 
 import {
   ChartWrapper,
@@ -30,6 +30,7 @@ import {
   SelectItem,
   SelectMenu,
   SelectWrapper,
+  Text,
 } from './styles';
 import { SelectOption } from './types';
 
@@ -48,8 +49,9 @@ const TimelinePage: FC = () => {
   const [value, setValue] = useState<IOption>(options[0]);
   const [icon, setIcon] = useState<string>(currencyIcons.BTC);
   const [chartData, setChartData] = useState<IChartCurrency[]>([]);
+  const [errorMessage, setErrorMessage] = useState<string>('');
 
-  const currencyIcon = chooseCurrencyIconHandler(value.label, currencyIcons);
+  const currencyIcon = chooseCurrencyIconHandler(value.label);
 
   const { imgAlt, labelText } = timelineText;
 
@@ -62,9 +64,13 @@ const TimelinePage: FC = () => {
   };
 
   useEffect(() => {
-    getTimelineData(value.label).then((data) => {
-      setChartData(data.data);
-    });
+    getTimelineData(value.label)
+      .then((data) => {
+        setChartData(data.data);
+      })
+      .catch((error) => {
+        setErrorMessage(error.message);
+      });
   }, [value.label]);
 
   const [currencyData, setCurrencyData] = useState({
@@ -119,10 +125,14 @@ const TimelinePage: FC = () => {
         </CurrencyIconWrapper>
         <CurrencyName>{value.label}</CurrencyName>
       </CurrencyNameWrapper>
-      <ChartWrapper>
-        <Line data={currencyData} />
-        <Bar data={currencyData} />
-      </ChartWrapper>
+      {errorMessage ? (
+        <Text>{errorMessage}</Text>
+      ) : (
+        <ChartWrapper>
+          <Line data={currencyData} />
+          <Bar data={currencyData} />
+        </ChartWrapper>
+      )}
     </>
   );
 };

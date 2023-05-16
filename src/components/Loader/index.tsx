@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 
-import { loaderText } from '@constants/config/components/loader';
+import { loaderText } from '@constants/config/components';
 
 import { Message } from './styles';
 

@@ -1,10 +1,8 @@
 import React, { FC } from 'react';
 
-import { currencyCardText } from '@constants/config/components/currencyCard';
-import { currencyIcons } from '@constants/styles/icons';
-
-import chooseCurrencyIconHandler from '../../helpers';
-import { handleRateValue } from '../../utils';
+import { currencyCardText } from '@constants/config/components';
+import chooseCurrencyIconHandler from '@helpers/index';
+import { handleRateValue } from '@utils/index';
 
 import {
   CardCurrencyWrapper,
@@ -21,7 +19,7 @@ const CurrencyCard: FC<CurrencyCardProps> = ({
   code,
   value,
 }) => {
-  const cardIcon = chooseCurrencyIconHandler(code, currencyIcons);
+  const cardIcon = chooseCurrencyIconHandler(code);
 
   const { imgAlt, baseCurrency } = currencyCardText;
 

@@ -1,31 +1,31 @@
-import { CurrencyIcons } from '@constants/styles/icons';
+import { currencyIcons } from '@constants/styles/icons';
 
-const chooseCurrencyIconHandler = (code: string, currency: CurrencyIcons) => {
+const chooseCurrencyIconHandler = (code: string) => {
   switch (code) {
     case 'EUR':
-      return currency.EUR;
+      return currencyIcons.EUR;
     case 'USD':
-      return currency.USD;
+      return currencyIcons.USD;
     case 'BTC':
-      return currency.BTC;
+      return currencyIcons.BTC;
     case 'ETH':
-      return currency.ETH;
+      return currencyIcons.ETH;
     case 'LTC':
-      return currency.LTC;
+      return currencyIcons.LTC;
     case 'JPY':
-      return currency.JPY;
+      return currencyIcons.JPY;
     case 'CNY':
-      return currency.CNY;
+      return currencyIcons.CNY;
     case 'AUD':
-      return currency.AUD;
+      return currencyIcons.AUD;
     case 'CAD':
-      return currency.CAD;
+      return currencyIcons.CAD;
     case 'ARS':
-      return currency.ARS;
+      return currencyIcons.ARS;
     case 'BYN':
-      return currency.BYN;
+      return currencyIcons.BYN;
     default:
-      return currency.BYN;
+      return currencyIcons.BYN;
   }
 };
 

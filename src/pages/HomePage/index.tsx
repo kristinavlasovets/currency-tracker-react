@@ -1,16 +1,15 @@
 import React, { FC, useEffect, useMemo, useState } from 'react';
 import { createPortal } from 'react-dom';
 
+import { getCurrencyData } from '@api/index';
 import CurrencyCard from '@components/CurrencyCard';
 import ModalCurrencyCard from '@components/ModalCurrencyCard';
 import SectionHeading from '@components/SectionHeading';
-import { sectionHeadingText } from '@constants/config/components/sectionHeading';
+import { sectionHeadingText } from '@constants/config/components';
 import { Currencies } from '@constants/currencies';
-import { ICurrencyItem } from '@types';
+import { ICurrencyItem } from '@typess/index';
 
-import { getCurrencyData } from '../../services';
-
-import { CardWrapper, Wrapper } from './styles';
+import { CardWrapper, Text, Wrapper } from './styles';
 
 const HomePage: FC = () => {
   const [allCurrencies, setAllCurrencies] = useState<ICurrencyItem[]>([]);
@@ -18,13 +17,18 @@ const HomePage: FC = () => {
   const [chosenCurrency, setChosenCurrency] = useState<ICurrencyItem>(
     {} as ICurrencyItem
   );
+  const [errorMessage, setErrorMessage] = useState<string>('');
 
   const allCurrenciesArray = Object.values(allCurrencies);
 
   useEffect(() => {
-    getCurrencyData().then(({ data }) => {
-      setAllCurrencies(data.data);
-    });
+    getCurrencyData()
+      .then(({ data }) => {
+        setAllCurrencies(data.data);
+      })
+      .catch((error) => {
+        setErrorMessage(error.message);
+      });
   }, []);
 
   const handleVisible = () => {
@@ -52,6 +56,7 @@ const HomePage: FC = () => {
 
   return (
     <Wrapper>
+      {errorMessage && <Text>{errorMessage}</Text>}
       <SectionHeading text={titleActions} />
       <CardWrapper data-cy="selectOption">
         {createPortal(
