@@ -3,4 +3,6 @@
 node_modules
 dist
 webpack
+e2e.ts
+commands.ts
 setupTests.ts
