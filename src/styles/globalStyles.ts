@@ -1,11 +1,17 @@
-import { createGlobalStyle } from 'styled-components'
-import { Colors } from '../constants/styles/colors'
+import { createGlobalStyle, DefaultTheme } from 'styled-components';
 
-export const GlobalStyles = createGlobalStyle`
-body {
-    background-color: ${Colors.DARK_BG};
-    margin: 0px;
-    padding: 0px;
+export const GlobalStyles = createGlobalStyle<{ theme: DefaultTheme }>`
+* {
+    background-color: ${(props) => props.theme.bodyColor};
+    color: ${(props) => props.theme.fontColor};
+    font-family: 'Poppins', 'Inter', sans-serif;
+    margin: ${({ theme }) => theme.margins.zero}px;
+    padding: ${({ theme }) => theme.paddings.zero}px;
     box-sizing: border-box;
+    text-decoration: none;
+    outline: none;
+    list-style: none;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
-`
+`;
